@@ -18,7 +18,7 @@ pub fn build(b: *std.Build) void {
     const docs = b.addInstallDirectory(.{
         .source_dir = lib_unit_tests.getEmittedDocs(),
         .install_dir = .prefix,
-        .install_subdir = "../doc",
+        .install_subdir = "../docs",
     });
 
     const run_lib_unit_tests = b.addRunArtifact(lib_unit_tests);
