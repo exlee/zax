@@ -1,5 +1,7 @@
 const std = @import("std");
 
+/// zax build helpers
+pub const helpers = @import("src/build_helpers.zig");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
 
@@ -7,6 +9,11 @@ pub fn build(b: *std.Build) void {
 
     const zax = b.addModule("zax", .{
         .root_source_file = b.path("src/root.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    _ = b.addModule("bzax", .{
+        .root_source_file = b.path("src/build_helpers.zig.zig"),
         .target = target,
         .optimize = optimize,
     });
@@ -24,6 +31,6 @@ pub fn build(b: *std.Build) void {
     const run_lib_unit_tests = b.addRunArtifact(lib_unit_tests);
     const test_step = b.step("test", "Run unit tests");
     test_step.dependOn(&run_lib_unit_tests.step);
-    const docs_step = b.step("doc", "Build Docs");
+    const docs_step = b.step("docs", "Build Docs");
     docs_step.dependOn(&docs.step);
 }

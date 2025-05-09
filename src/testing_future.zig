@@ -38,13 +38,13 @@ pub const Error = error{
 const std = @import("std");
 const t = @import("std").testing;
 
-/// This wrapper around `std.testing.expect` (with inverted outcome)
+/// Wrapper around `std.testing.expect` (with inverted outcome)
 pub fn expect(ok: bool) .FutureTestOK!void {
     t.expect(ok) catch return;
     return .FutureTestOK;
 }
 
-/// This wrapper around `std.testing.expectError` (with inverted outcome)
+/// Wrapper around `std.testing.expectError` (with inverted outcome)
 ///
 /// Caveats:
 /// It does complete inversion, so will catch both no error and error that's not
@@ -68,6 +68,8 @@ const zax = .{
 test expect {
     // Somewhere in the def files...
     const MAX_VOLUME = 10;
+
+    // ...
 
     // Amplifier implementation
     const Amplifier = struct {
