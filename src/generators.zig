@@ -60,17 +60,17 @@ test Unit {
         kb,
         b,
 
-        fn mod(t: @This(), value: u32) u32 {
-            const EE = 1024;
-            const SI = 1000;
-            return switch (t) {
-                .gib => EE * EE * EE * value,
-                .mib => EE * EE * value,
-                .kib => EE * value,
-                .gb => SI * SI * SI * value,
-                .mb => SI * SI * value,
-                .kb => SI * value,
-                .b => value,
+        fn mod(t: @This(), value: u64) u64 {
+            const EE: u64 = 1024;
+            const SI: u64 = 1000;
+            return value * switch (t) {
+                .gib => EE * EE * EE,
+                .mib => EE * EE,
+                .kib => EE,
+                .gb => SI * SI * SI,
+                .mb => SI * SI,
+                .kb => SI,
+                .b => 1,
             };
         }
     };
