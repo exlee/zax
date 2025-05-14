@@ -63,7 +63,7 @@ pub const TestOption = struct {
     gen_test_binaries: bool = true,
     /// Filter to use for steps.
     /// Use std.Build.option to easily specify one
-    test_filters: ?[]const []const u8,
+    test_filters: ?[]const []const u8 = null,
 };
 
 /// Easily add testing helpers/binaries/lldb wraps
